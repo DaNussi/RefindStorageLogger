@@ -31,7 +31,5 @@ local headers = {
 
 request = http.post("https://influx.nussi.net/write?db=rf", body, headers)
 print("=== REQUEST ===")
-for k,v in pairs(request) do
-   print(k.." = "..v) 
-end
+print(request)
 request.close()
