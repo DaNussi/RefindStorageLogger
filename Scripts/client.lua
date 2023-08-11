@@ -15,4 +15,4 @@ function dump(o)
 local bridge = peripheral.find("rsBridge")
 local items = bridge.listItems()
 
-dump(items)
+print(dump(items))
