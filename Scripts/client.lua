@@ -29,9 +29,7 @@ local headers = {
     [ "Authorization" ] = "Token IYW-b_B1ImVPW1i09j4nafgkv4z1cCQdQn_P04JULaYdWgHNjn5JH883cczJIPrxuZg3w7nmkiPl0kyS7DuTXA=="
 }
 
-http.request{
-    url = "https://influx.nussi.net/write?db=rf",
-    body = body,
-    headers = headers,
-    method = "POST"
-}
+local request = http.post("https://influx.nussi.net/write?db=rf", body, headers)
+print("=== REQUEST ===")
+print("Status: "..request.getResponseCode())
+request.close()
