@@ -1,6 +1,10 @@
 local bridge = peripheral.find("rsBridge")
 local items = bridge.listItems()
 
+function bool_to_number(value)
+    return value and 1 or 0
+end
+
 local body = "measurement,item=host1 field1=2i,field2=2.0";
 
 for index, item in pairs(items) do
@@ -13,7 +17,9 @@ for index, item in pairs(items) do
     itemData = itemData .. " "
     itemData = itemData .. "name="..name
     itemData = itemData .. "amount="..amount
-    itemData = itemData .. "isCraftable="..isCraftable
+    itemData = itemData .. "isCraftable="..bool_to_number(isCraftable)
+
+    print(itemData)
 
     body = body..itemData.."\n";
 end
