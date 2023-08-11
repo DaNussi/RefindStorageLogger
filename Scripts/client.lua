@@ -1,18 +1,10 @@
-function dump(o)
-    if type(o) == 'table' then
-       local s = '{ '
-       for k,v in pairs(o) do
-          if type(k) ~= 'number' then k = '"'..k..'"' end
-          s = s .. '['..k..'] = ' .. dump(v) .. ','
-       end
-       return s .. '} '
-    else
-       return tostring(o)
-    end
- end
-
-
 local bridge = peripheral.find("rsBridge")
 local items = bridge.listItems()
 
-print(dump(items))
+for index, item in pairs(items) do
+    if(index == 1) then
+        for k,v in pairs(item) do
+            print(tostring(k)..' = '..tostring(v))
+        end
+    end
+end
