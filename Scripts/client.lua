@@ -8,6 +8,14 @@ for index, item in pairs(items) do
     local amount = item["amount"]
     local isCraftable = item["isCraftable"]
 
+    local itemData = "measurement,";
+    itemData = itemData .. "item="..name.."_"..index
+    itemData = itemData .. " "
+    itemData = itemData .. "name="..name
+    itemData = itemData .. "amount="..amount
+    itemData = itemData .. "isCraftable="..isCraftable
+
+    body = body..itemData.."\n";
 end
 
 local headers = {
