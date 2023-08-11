@@ -1,5 +1,6 @@
-# local bridge = peripheral.find("rsBridge")
-local request = http.get("https://influx.nussi.net/metrics")
-print(request.readAll())
--- => HTTP is working!
-request.close()
+local bridge = peripheral.find("rsBridge")
+local items = bridge.listItems()
+
+for k, v in pairs(items) do
+    print(k)
+end
