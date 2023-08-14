@@ -13,7 +13,6 @@ function sendData(body)
         [ "Authorization" ] = "Token "..arg[1]
     }
     
-    print("Body: "..body)
     request = http.post("https://influx.nussi.net/write?db=rf", body, headers)
     print("Request: "..request)
     print("Sent data!")
@@ -35,14 +34,12 @@ while true do
         local current = items[index]
         if current == nil then
             current = item
-            print("+ "..index..current["amount"])
+            -- print("+ "..index..current["amount"])
         else
             current["amount"] = current["amount"] + item["amount"]
-            print("~ "..index..current["amount"])
+            -- print("~ "..index..current["amount"])
         end
         items[index] = current
-
-
     end
 
 
@@ -52,25 +49,30 @@ while true do
         local current = oldItems[name]
         if current == nil then
             oldItems[name] = item
-            print("+ "..name..item["amount"])
+            -- print("+ "..name..item["amount"])
         else
             if current["amount"] == item["amount"] then
-                table.remove(item, name)
+                items[name] = nill
             else
-                print("~ "..name..item["amount"])
+                -- print("~ "..name..item["amount"])
             end
         end
-
     end
 
 
-    print("=== Sending data ===")
+    print("=== Building Body ===")
     local body = ""
     for name, item in pairs(items) do
-        local itemData = itemToMeasurement(item)
-        body = body..itemData.."\n"
-        print("# "..itemData)
+        if item ~= nil then
+            local itemData = itemToMeasurement(item)
+            body = body..itemData.."\n"
+            -- print("# "..itemData)
+        end
     end
+    print("Length: "..#body)
+
+    print("=== Sending Data ===")
+    sendData(body)
 
     
     os.sleep( 3 )
