@@ -62,17 +62,16 @@ while true do
         local current = oldItems[name]
         if current == nil then
             items[name] = item
-            -- print("+ "..name..item["amount"])
+            oldItems[name] = item
+            print("+ "..name..item["amount"])
         else
-            if current["amount"] == item["amount"] then
-
-            else
-                items[name] = current
+            if current["amount"] ~= item["amount"] then
+                items[name] = item
+                oldItems[name] = item
                 -- print("~ "..name..item["amount"])
             end
         end
     end
-    oldItems = items
     print("Changes: "..GetTableLng(items))
     print("")
 
