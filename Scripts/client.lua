@@ -23,7 +23,10 @@ end
 local bridge = peripheral.find("rsBridge")
 local oldItems = {}
 while true do
-    
+    print("")
+    print("")
+    print("")
+    print("")
     local data = bridge.listItems()
     local items = {}
 
@@ -41,6 +44,8 @@ while true do
         end
         items[index] = current
     end
+    print("Total: "..#items)
+    print("")
 
 
     print("=== Rremoving Trash ===")
@@ -62,6 +67,8 @@ while true do
             end
         end
     end
+    print("Changes: "..#items)
+    print("")
 
 
     print("=== Building Body ===")
@@ -74,9 +81,11 @@ while true do
         end
     end
     print("Length: "..#body)
+    print("")
 
     print("=== Sending Data ===")
     sendData(body)
+    print("")
 
     
     os.sleep( 3 )
