@@ -56,7 +56,6 @@ while true do
 
     print("=== Rremoving Trash ===")
     local comp = items
-    oldItems = items
     items = {}
     for name, item in pairs(comp) do
         
@@ -73,6 +72,7 @@ while true do
             end
         end
     end
+    oldItems = items
     print("Changes: "..GetTableLng(items))
     print("")
 
