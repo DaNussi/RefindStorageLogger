@@ -1,4 +1,4 @@
-local arg = { ... }
+local token = ""
 
 function bool_to_number(value)
     return value and 1 or 0
@@ -10,11 +10,11 @@ end
 
 function sendData(body)
     local headers = {
-        [ "Authorization" ] = "Token "..arg[1]
+        [ "Authorization" ] = "Token "..token
     }
     
     request = http.post("https://influx.nussi.net/write?db=rf", body, headers)
-    print("Request: "..request)
+    print("Request: "..#request)
     print("Sent data!")
 end
 
@@ -44,16 +44,20 @@ while true do
 
 
     print("=== Rremoving Trash ===")
-    for name, item in pairs(items) do
+    local comp = items
+    oldItems = items
+    items = {}
+    for name, item in pairs(comp) do
         
         local current = oldItems[name]
         if current == nil then
-            oldItems[name] = item
+            items[name] = item
             -- print("+ "..name..item["amount"])
         else
             if current["amount"] == item["amount"] then
-                items[name] = nill
+
             else
+                items[name] = current
                 -- print("~ "..name..item["amount"])
             end
         end
