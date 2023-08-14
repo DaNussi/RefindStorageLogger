@@ -18,7 +18,13 @@ function sendData(body)
     print("Sent data!")
 end
 
-
+function GetTableLng(tbl)
+    local getN = 0
+    for n in pairs(tbl) do 
+      getN = getN + 1 
+    end
+    return getN
+  end
 
 local bridge = peripheral.find("rsBridge")
 local oldItems = {}
@@ -44,7 +50,7 @@ while true do
         end
         items[index] = current
     end
-    print("Total: "..#items)
+    print("Total: "..GetTableLng(items))
     print("")
 
 
@@ -67,7 +73,7 @@ while true do
             end
         end
     end
-    print("Changes: "..#items)
+    print("Changes: "..GetTableLng(items))
     print("")
 
 
